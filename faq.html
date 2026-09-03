@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas Frequentes (FAQ) — Inovação Assessoria Contábil</title>
+    <meta name="description" content="Tire suas dúvidas sobre contabilidade, abertura de empresa, MEI, Simples Nacional, planejamento tributário e muito mais. Inovação Assessoria Contábil em Guarulhos.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.inovacaoassessoria.com.br/faq.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Perguntas Frequentes — Inovação Assessoria Contábil">
+    <meta property="og:description" content="Tire suas dúvidas sobre contabilidade e serviços contábeis em Guarulhos.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ── FAQ ESPECÍFICO ── */
+        .faq-hero {
+            background: var(--color-primary);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        .faq-hero h1 {
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+        .faq-hero p {
+            color: rgba(255,255,255,0.80);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filtro de categorias */
+        .faq-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+        .faq-filter-btn {
+            padding: 8px 22px;
+            border: 2px solid var(--color-primary);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--color-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .faq-filter-btn:hover,
+        .faq-filter-btn.active {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        /* Accordion */
+        .faq-section {
+            padding: 0 0 var(--spacing-xl);
+        }
+        .faq-category-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            margin: var(--spacing-lg) 0 var(--spacing-md);
+        }
+        .faq-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 6px 24px rgba(11,32,70,0.10);
+        }
+        .faq-item.open {
+            border-color: var(--color-primary);
+            box-shadow: 0 6px 24px rgba(11,32,70,0.14);
+        }
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 20px 24px;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            transition: background 0.2s;
+        }
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+        .faq-item.open .faq-question {
+            color: var(--color-primary);
+            background: #f0f5ff;
+        }
+        .faq-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: transform 0.35s ease, background 0.2s;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+            background: var(--color-secondary);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 800px;
+        }
+        .faq-answer-inner {
+            padding: 0 24px 22px;
+            color: var(--color-text-dark);
+            line-height: 1.75;
+            font-size: 0.97rem;
+        }
+        .faq-answer-inner strong {
+            color: var(--color-text-dark);
+        }
+        .faq-answer-inner ul {
+            margin: 10px 0 0 20px;
+        }
+        .faq-answer-inner ul li {
+            margin-bottom: 6px;
+        }
+
+        /* CTA inferior */
+        .faq-cta {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1a3a7a 100%);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+        .faq-cta h2 { color: #fff; margin-bottom: var(--spacing-sm); }
+        .faq-cta p  { color: rgba(255,255,255,0.80); margin-bottom: var(--spacing-lg); }
+
+        /* Responsivo */
+        @media (max-width: 640px) {
+            .faq-question { font-size: 0.92rem; padding: 16px 18px; }
+            .faq-answer-inner { padding: 0 18px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header-logo">
+                <img src="images/logo.png" alt="Inovação Assessoria Contábil">
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="sobre.html" class="nav-link">Sobre Nós</a></li>
+                    <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+                    <li><a href="cases.html" class="nav-link">Cases e Clientes</a></li>
+                    <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+                    <li><a href="contato.html" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="faq-hero">
+        <div class="container">
+            <h1>Perguntas Frequentes</h1>
+            <p>Tudo o que você precisa saber antes de contratar uma assessoria contábil. Simples, direto e sem "juridiquês".</p>
+        </div>
+    </section>
+
+    <!-- FILTROS -->
+    <div class="container">
+        <div class="faq-filters" id="faq-filters">
+            <button class="faq-filter-btn active" data-cat="all" onclick="filterFaq(this,'all')">Todas</button>
+            <button class="faq-filter-btn" data-cat="abertura" onclick="filterFaq(this,'abertura')">Abertura de Empresa</button>
+            <button class="faq-filter-btn" data-cat="tributos" onclick="filterFaq(this,'tributos')">Tributos &amp; Impostos</button>
+            <button class="faq-filter-btn" data-cat="mei" onclick="filterFaq(this,'mei')">MEI</button>
+            <button class="faq-filter-btn" data-cat="servicos" onclick="filterFaq(this,'servicos')">Nossos Serviços</button>
+            <button class="faq-filter-btn" data-cat="financeiro" onclick="filterFaq(this,'financeiro')">Financeiro</button>
+        </div>
+    </div>
+
+    <!-- FAQ ACCORDION -->
+    <main class="faq-section">
+        <div class="container">
+
+            <!-- CATEGORIA: Abertura de Empresa -->
+            <p class="faq-category-title" data-cat="abertura"><i class="fa-solid fa-building-columns"></i> &nbsp;Abertura de Empresa</p>
+
+            <div class="faq-item" data-cat="abertura">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q1">
+                    Quanto tempo leva para abrir uma empresa em Guarulhos?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q1">
+                    <div class="faq-answer-inner">
+                        Em média, de <strong>5 a 15 dias úteis</strong>, dependendo do tipo de empresa e da atividade. Empresas de serviços com atividades simples tendem a ser mais rápidas. No nosso escritório cuidamos de todo o processo:
+                        <ul>
+                            <li>Registro na Junta Comercial (JUCESP)</li>
+                            <li>Obtenção do CNPJ na Receita Federal</li>
+                            <li>Inscrição Municipal e Estadual (quando necessário)</li>
+                            <li>Emissão do Alvará de Funcionamento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="abertura">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q2">
+                    Quais documentos preciso para abrir minha empresa?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q2">
+                    <div class="faq-answer-inner">
+                        Os documentos básicos para abertura de uma Ltda. ou SLU são:
+                        <ul>
+                            <li>RG e CPF de todos os sócios</li>
+                            <li>Comprovante de residência atualizado</li>
+                            <li>Comprovante do endereço comercial (contrato de aluguel ou escritura)</li>
+                            <li>Definição da atividade principal (CNAE)</li>
+                        </ul>
+                        Após você nos enviar os documentos, nós cuidamos de todo o restante!
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="abertura">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q3">
+                    Qual a diferença entre MEI, ME, EPP e Ltda.?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q3">
+                    <div class="faq-answer-inner">
+                        <ul>
+                            <li><strong>MEI:</strong> Faturamento até R$ 81 mil/ano. Tributo fixo mensal baixo. Não pode ter sócios.</li>
+                            <li><strong>ME (Microempresa):</strong> Faturamento até R$ 360 mil/ano. Mais atividades liberadas.</li>
+                            <li><strong>EPP (Empresa de Pequeno Porte):</strong> Faturamento até R$ 4,8 milhões/ano.</li>
+                            <li><strong>Ltda. (Sociedade Limitada):</strong> Pode ter dois ou mais sócios. Capital social protege o patrimônio pessoal.</li>
+                        </ul>
+                        Agende uma consulta gratuita para indicarmos a melhor opção para o seu caso.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA: Tributos -->
+            <p class="faq-category-title" data-cat="tributos"><i class="fa-solid fa-receipt"></i> &nbsp;Tributos &amp; Impostos</p>
+
+            <div class="faq-item" data-cat="tributos">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q4">
+                    Simples Nacional, Lucro Presumido ou Lucro Real — qual o melhor?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q4">
+                    <div class="faq-answer-inner">
+                        Não existe uma resposta única — depende do faturamento, margem de lucro e tipo de atividade da empresa. De forma resumida:
+                        <ul>
+                            <li><strong>Simples Nacional:</strong> Regra geral, o melhor para faturamentos de até R$ 4,8 mi/ano com tributação simplificada.</li>
+                            <li><strong>Lucro Presumido:</strong> Pode ser mais vantajoso para empresas com alta margem de lucro.</li>
+                            <li><strong>Lucro Real:</strong> Obrigatório para bancos e algumas empresas. Pode ser bom quando há muitas despesas dedutíveis.</li>
+                        </ul>
+                        Fazemos a simulação completa para a sua empresa sem custo na primeira consulta.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="tributos">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q5">
+                    Minha empresa tem impostos em atraso. O que devo fazer?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q5">
+                    <div class="faq-answer-inner">
+                        Não se desespere! Existem diversas opções de regularização:
+                        <ul>
+                            <li>Parcelamentos da Receita Federal (PGFN e REFIS)</li>
+                            <li>Programas de parcelamento municipais para ISS em atraso</li>
+                            <li>Renegociação de dívidas do Simples Nacional</li>
+                        </ul>
+                        Entre em contato conosco. Nossa equipe faz um diagnóstico completo da situação fiscal e apresenta o melhor caminho de regularização.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="tributos">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q6">
+                    O que é planejamento tributário e como ele pode economizar dinheiro?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q6">
+                    <div class="faq-answer-inner">
+                        Planejamento tributário é o conjunto de estratégias <strong>legais</strong> para reduzir a carga de impostos da sua empresa. Exemplos práticos:
+                        <ul>
+                            <li>Escolha do regime tributário mais adequado (economia de até 30%)</li>
+                            <li>Aproveitamento de créditos de PIS/COFINS</li>
+                            <li>Distribuição de lucros aos sócios (isenta de IR)</li>
+                            <li>Enquadramento correto de atividades no CNAE</li>
+                        </ul>
+                        Nossos clientes economizam em média entre 15% e 40% em tributos após o planejamento.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA: MEI -->
+            <p class="faq-category-title" data-cat="mei"><i class="fa-solid fa-user-tie"></i> &nbsp;MEI</p>
+
+            <div class="faq-item" data-cat="mei">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q7">
+                    Posso me tornar MEI? Quais atividades são permitidas?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q7">
+                    <div class="faq-answer-inner">
+                        Pode! O MEI é ideal para trabalhadores autônomos e pequenos empreendedores com faturamento de até R$ 81 mil/ano. São mais de 500 atividades permitidas, como: cabeleireiro, eletricista, pedreiro, costureira, designer freelancer, entre outras. Profissões regulamentadas como médico, advogado e engenheiro <strong>não podem</strong> ser MEI.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="mei">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q8">
+                    Quando devo sair do MEI e abrir uma empresa maior?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q8">
+                    <div class="faq-answer-inner">
+                        Você deve considerar migrar quando:
+                        <ul>
+                            <li>Seu faturamento anual se aproximar de R$ 81 mil</li>
+                            <li>Precisar emitir nota fiscal de serviços com valores maiores para PJs</li>
+                            <li>Quiser contratar mais de 1 funcionário</li>
+                            <li>Sua atividade não for permitida no MEI</li>
+                            <li>Precisar de CNPJ com mais credibilidade para negócios B2B</li>
+                        </ul>
+                        Ajudamos você a fazer essa transição sem interromper as atividades.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA: Nossos Serviços -->
+            <p class="faq-category-title" data-cat="servicos"><i class="fa-solid fa-briefcase"></i> &nbsp;Nossos Serviços</p>
+
+            <div class="faq-item" data-cat="servicos">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q9">
+                    Quais serviços a Inovação Assessoria oferece?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q9">
+                    <div class="faq-answer-inner">
+                        Somos um escritório completo de contabilidade. Nossos serviços incluem:
+                        <ul>
+                            <li>Abertura e encerramento de empresas</li>
+                            <li>Contabilidade mensal (escrituração contábil e fiscal)</li>
+                            <li>Folha de pagamento e gestão de RH</li>
+                            <li>Planejamento tributário</li>
+                            <li>Regularização fiscal e parcelamentos</li>
+                            <li>BPO Financeiro</li>
+                            <li>Certidões negativas e declarações</li>
+                        </ul>
+                        Saiba mais na nossa <a href="servicos.html">página de Serviços</a>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="servicos">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q10">
+                    O atendimento é presencial ou pode ser online?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q10">
+                    <div class="faq-answer-inner">
+                        Os dois! Nosso escritório está localizado em Guarulhos (Jardim Tijuco), mas atendemos empresas de todo o Brasil de forma <strong>100% digital</strong>. Documentos são enviados por e-mail ou WhatsApp, e as reuniões podem ser feitas por videochamada. A maioria dos nossos clientes nem precisam vir ao escritório.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="servicos">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q11">
+                    Quanto custa a contabilidade mensal para minha empresa?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q11">
+                    <div class="faq-answer-inner">
+                        O valor varia conforme o regime tributário, faturamento e número de funcionários da sua empresa. Trabalhamos com mensalidades que cabem no orçamento de micro e pequenas empresas. Para receber uma proposta personalizada e sem compromisso, entre em contato via <a href="https://wa.me/551150591102" target="_blank" rel="noopener">WhatsApp</a>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORIA: Financeiro -->
+            <p class="faq-category-title" data-cat="financeiro"><i class="fa-solid fa-chart-line"></i> &nbsp;Financeiro</p>
+
+            <div class="faq-item" data-cat="financeiro">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q12">
+                    O que é BPO Financeiro e qual a vantagem?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q12">
+                    <div class="faq-answer-inner">
+                        BPO Financeiro (Business Process Outsourcing) é a terceirização do setor financeiro da sua empresa para um escritório especializado. Com ele, cuidamos de:
+                        <ul>
+                            <li>Contas a pagar e a receber</li>
+                            <li>Conciliação bancária</li>
+                            <li>Fluxo de caixa</li>
+                            <li>DRE mensal</li>
+                        </ul>
+                        A vantagem é <strong>focar no seu negócio</strong> enquanto especialistas gerenciam as finanças, reduzindo erros e custos com funcionário CLT.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-cat="financeiro">
+                <button class="faq-question" onclick="toggleFaq(this)" id="faq-q13">
+                    Minha empresa precisa de um balanço patrimonial? Para que serve?
+                    <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+                </button>
+                <div class="faq-answer" role="region" aria-labelledby="faq-q13">
+                    <div class="faq-answer-inner">
+                        Sim! O Balanço Patrimonial é obrigatório para empresas do Lucro Real e extremamente útil para todas as outras. Ele serve para:
+                        <ul>
+                            <li>Comprovar saúde financeira para bancos (obter crédito e financiamentos)</li>
+                            <li>Participar de licitações e contratos públicos</li>
+                            <li>Atrair sócios ou investidores</li>
+                            <li>Tomada de decisões estratégicas pelo gestor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="faq-cta">
+                <h2>Ainda tem dúvidas?</h2>
+                <p>Nossa equipe está pronta para responder qualquer pergunta diretamente pelo WhatsApp. Atendimento ágil e sem burocracia.</p>
+                <a href="https://wa.me/551150591102?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20contabilidade." target="_blank" rel="noopener" class="btn btn-accent" id="faq-cta-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> &nbsp;Falar no WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h3>Inovação Assessoria</h3>
+                <p>Contabilidade estratégica em Guarulhos para empresas que querem crescer com segurança.</p>
+            </div>
+            <div>
+                <h3>Contato</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Av. Emílio Ribas, 651<br>Jardim Tijuco, Guarulhos - SP</p>
+                <p><i class="fa-brands fa-whatsapp"></i> (11) 5059-1102</p>
+                <p><i class="fa-brands fa-instagram"></i> @inovaçãoassessoria</p>
+            </div>
+            <div>
+                <h3>Links Úteis</h3>
+                <p><a href="sobre.html">Sobre a Empresa</a></p>
+                <p><a href="servicos.html">Nossos Serviços</a></p>
+                <p><a href="faq.html">Perguntas Frequentes</a></p>
+                <p><a href="privacidade.html">Política de Privacidade</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Inovação Consultoria e Assessoria Contábil. Todos os direitos reservados. CNPJ: 64.023.884/0001-82.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // ── ACCORDION ──
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            // Fecha todos
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+            // Abre o clicado (se estava fechado)
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // ── FILTRO DE CATEGORIAS ──
+        function filterFaq(btn, cat) {
+            // Atualiza botão ativo
+            document.querySelectorAll('.faq-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const items  = document.querySelectorAll('.faq-item');
+            const titles = document.querySelectorAll('.faq-category-title');
+
+            items.forEach(item => {
+                const show = cat === 'all' || item.dataset.cat === cat;
+                item.style.display = show ? '' : 'none';
+                // Fecha ao filtrar
+                if (!show) item.classList.remove('open');
+            });
+
+            titles.forEach(title => {
+                const show = cat === 'all' || title.dataset.cat === cat;
+                title.style.display = show ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
