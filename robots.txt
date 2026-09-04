@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 
-Sitemap: https://xn--inovaoassessoriacontabil-49b7h.store/sitemap.xml
+Sitemap: https://www.inovacaoassessoriacontabil.com/sitemap.xml
